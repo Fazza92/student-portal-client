@@ -1,4 +1,9 @@
 class Client::EducationsController < ApplicationController
+  def new
+    @education = {}
+    render 'new.html.erb'
+  end
+
   def create
     @education = {
                   start_date: "",

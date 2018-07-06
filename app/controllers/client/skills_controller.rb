@@ -1,4 +1,9 @@
 class Client::SkillsController < ApplicationController
+  def new
+    @skill = {}
+    render 'new.html.erb'
+  end
+
   def create
     @education = {
                   skill_name: ""

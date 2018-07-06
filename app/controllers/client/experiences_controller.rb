@@ -1,4 +1,9 @@
 class Client::ExperiencesController < ApplicationController
+  def new
+    @experience = {}
+    render 'new.html.erb'
+  end
+
   def create
     @experience = {
                     start_date: "",

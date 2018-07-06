@@ -1,0 +1,7 @@
+<%= form_tag "/client/skills", method: :post do %>
+     <div>
+       Skill: <input type="text" name="skill_name" value="<%= skill["skill_name"] %>">
+     </div>
+     <input type="submit" value="Add Skill">
+
+<% end %>

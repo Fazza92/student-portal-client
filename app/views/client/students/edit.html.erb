@@ -1,7 +1,7 @@
 
 
 
-<%= form_tag "/client/students/#{@product["id"]}", method: :patch do %>
+<%= form_tag "/client/students/#{@student["id"]}", method: :patch do %>
  <div>
    First Name: <input type=“text” name=“first_name” value="<%= @student['first_name'] %>">
  </div>
@@ -42,8 +42,8 @@
 
 <% end %>
 
-<%= form_tag "/client/educations/#{@student["id"]}", method: :patch do %>
-   <% @student["educations"].each do |education| %>
+<% @student["educations"].each do |education| %>
+  <%= form_tag "/client/educations/#{education["id"]}", method: :patch do %>
      <div>
        Start Date: <input type="text" name="start_date" value="<%= education["start_date"] %>">
      </div>
@@ -64,29 +64,9 @@
    <% end %>
 <% end %>
 
-<h2>Add new education</h2>
-<%= form_tag "/client/educations", method: :post do %>
-      Start Date: <input type="text" name="start_date" value="<%= education["start_date"] %>">
-    </div>
-    <div>
-      End Date: <input type="text" name="end_date" value="<%= education[“end_date”] %>">
-    </div>
-     <div>
-      Degree: <input type="text" name="degree" value="<%= education["degree"] %>">
-    </div>
-     <div>
-      University Name: <input type="text" name="university_name" value="<%= education["university_name"] %>">
-    </div>
-     <div>
-      Details: <input type="text" name="details" value="<%= education["details"] %>">
-    </div>
-    <input type="submit" value="Create Education">
-<% end %>
 
-
-
-<%= form_tag "/client/students/#{@student["id"]}", method: :patch do %>
-   <% @student["experiences"].each do |experience| %>
+<% @student["experiences"].each do |experience| %>
+  <%= form_tag "/client/experiences/#{experience["id"]}", method: :patch do %>
      <div>
        Start Date: <input type=“text” name="start_date" value="<%= experience["start_date"] %>">
      </div>
@@ -107,47 +87,16 @@
    <% end %>
 <% end %>
 
-
-<h2>Add new Experience:</h2>
-<%= form_tag "/client/experiences", method: :post do %>
-       <div>
-       Start Date: <input type=“text” name="start_date" value="<%= experience["start_date"] %>">
-     </div>
-     <div>
-       End Date: <input type=“text” name="end_time" value="<%= experience["end_date"] %>">
-     </div>
-      <div>
-       Job Title: <input type=“text” name="job_title" value="<%= experience["job_title"] %>">
-     </div>
-      <div>
-       Company Name: <input type=“text” name="company_name" value="<%= experience["company_name"] %>">
-     </div>
-      <div>
-       Details: <input type=“text” name="details" value="<%= experience["details"] %>">
-     </div>
-     <input type=“submit” value="Add Experience">
-
-<% end %>
-
-
-
-
-<%= form_tag "/client/students/#{@student["id"]}", method: :patch do %>
-   <% @student["skills"].each do |skill| %>
+<% @student["skills"].each do |skill| %>
+  <%= form_tag "/client/skills/#{skill["id"]}", method: :patch do %>
      <div>
        Skill: <input type="text" name="skill_name" value="<%= skill["skill_name"] %>">
      </div>
-     <input type="submit" value="Update Skills">
+     <input type="submit" value="Update Skill">
      <a href="/client/skills/<%= skill["id"] %>" data-method="delete">Delete</a>
    <% end %>
 <% end %>
 
-<%= form_tag "/client/skills", method: :post do %>
-     <div>
-       Skill: <input type="text" name="skill_name" value="<%= skill["skill_name"] %>">
-     </div>
-     <input type="submit" value="Add Skill">
 
-<% end %>
 
 
