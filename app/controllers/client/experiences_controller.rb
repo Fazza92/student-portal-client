@@ -12,7 +12,7 @@ class Client::ExperiencesController < ApplicationController
                     company_name: "",
                     details: ""
                   }
-    # Add a unirest post request 
+    response = Unirest.post("https://morning-oasis-72057.herokuapp.com/api/experiences", parameters: @experience) 
 
     if response.code == 200
          flash[:success] = "Successfully created Product"
@@ -27,6 +27,7 @@ class Client::ExperiencesController < ApplicationController
   end
   def update
      @experience = {
+                       experience_id: params[:id]
                        start_date: params[:start_date],
                        end_date: params[:end_date],
                        job_title: params[:job_title],
@@ -35,13 +36,13 @@ class Client::ExperiencesController < ApplicationController
                      }
 
      response = Unirest.patch(
-                             "http://localhost:3000/api/products/#{params[:id]}",
+                             "https://morning-oasis-72057.herokuapp.com/api/experiences/#{experience_id}",
                              parameters: @experience
                              )
 
      if response.code == 200
        flash[:success] = "Successfully updated Experience"
-       redirect_to "/client/experiences/#{params[:id]}"
+       redirect_to '/'
      elsif response.code == 401
        flash[:warning] = "You are not authorized to update a experience"
        redirect_to '/'
@@ -52,10 +53,10 @@ class Client::ExperiencesController < ApplicationController
    end
 
    def destroy
-     response = Unirest.delete("http://localhost:3000/api/experiences/#{params['id']}")
+     response = Unirest.delete("https://morning-oasis-72057.herokuapp.com/api/experiences/")
      if response.code == 200
      flash[:success] = "Successfully destroyed experience"
-     redirect_to "/client/experiences"
+     redirect_to "/"
      else
        flash[:warning] = "You are not authorized"
        redirect_to '/'
