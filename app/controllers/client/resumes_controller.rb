@@ -1,16 +1,5 @@
 class Client::ResumesController < ApplicationController
-  def show
-    resume_id = params[:id]
-    # Add a unirest request here
-    @resume = response.body
-    render 'show.html.erb'
-  end
 
-  def edit
-    # Add a Unirest request here
-    @resume = response.body
-    render 'edit.html.erb'
-  end
 
   def update
     @student = {
