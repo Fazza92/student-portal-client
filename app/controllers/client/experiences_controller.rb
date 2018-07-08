@@ -36,7 +36,7 @@ class Client::ExperiencesController < ApplicationController
                      }
 
      response = Unirest.patch(
-                             "https://morning-oasis-72057.herokuapp.com/api/experiences/#{experience_id}",
+                             "https://morning-oasis-72057.herokuapp.com/api/experiences/#{params['id'] }",
                              parameters: @experience
                              )
 
@@ -53,7 +53,7 @@ class Client::ExperiencesController < ApplicationController
    end
 
    def destroy
-     response = Unirest.delete("https://morning-oasis-72057.herokuapp.com/api/experiences/")
+     response = Unirest.delete("https://morning-oasis-72057.herokuapp.com/api/experiences/#{params['id'] }")
      if response.code == 200
      flash[:success] = "Successfully destroyed experience"
      redirect_to "/"

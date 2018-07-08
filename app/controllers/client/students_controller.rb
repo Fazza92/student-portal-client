@@ -1,13 +1,16 @@
 class Client::StudentsController < ApplicationController
   def show
     student_id = params[:id]
-    # Add a unirest request here
+
+    response = Unirest.get("https://morning-oasis-72057.herokuapp.com/api/students/#{student_id}")
+
     @student = response.body
     render 'show.html.erb'
   end
 
   def edit
-    # Add a Unirest request here
+    response = Unirest.get("https://morning-oasis-72057.herokuapp.com/api/students/#{params['id']}")
+
     @student = response.body
     render 'edit.html.erb'
   end
@@ -19,7 +22,7 @@ class Client::StudentsController < ApplicationController
                 email: params[:email],
                 phone_number: params[:phone_number],
                 bio: params[:bio],
-                linkedin_url: params[:linkedin_url],
+                linked_in_url: params[:linked_in_url],
                 personal_blog_url: params[:personal_blog_url],
                 github_url: params[:github_url],
                 photo_url: params[:photo_url],
@@ -28,10 +31,8 @@ class Client::StudentsController < ApplicationController
                 capstone_url: params[:capstone_url]
                }
 
-      response = Unirest.patch(
-                              "http://localhost:3000/api/students/#{params[:id]}",
-                              parameters: @student
-                              )
+       response = Unirest.patch("https://morning-oasis-72057.herokuapp.com/api/students/#{params['id']}", parameters: @student)
+
 
       if response.code == 200
         flash[:success] = "Successfully updated Student"

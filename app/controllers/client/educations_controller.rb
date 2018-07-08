@@ -12,7 +12,8 @@ class Client::EducationsController < ApplicationController
                   university_name: "",
                   details: ""
                   }
-    # Add a unirest post request 
+    response = Unirest.post("https://morning-oasis-72057.herokuapp.com/api/educations", parameters: @education)
+ 
 
     if response.code == 200
          flash[:success] = "Successfully created education"
@@ -34,10 +35,8 @@ class Client::EducationsController < ApplicationController
                        details: params[:details]
                      }
 
-     response = Unirest.patch(
-                             "http://localhost:3000/api/products/#{params[:id]}",
-                             parameters: @education
-                             )
+      response = Unirest.patch("https://morning-oasis-72057.herokuapp.com/api/educations/#{params['id']}", parameters: @education)
+
 
      if response.code == 200
        flash[:success] = "Successfully updated Education"
@@ -52,7 +51,8 @@ class Client::EducationsController < ApplicationController
    end
 
    def destroy
-     response = Unirest.delete("http://localhost:3000/api/educations/#{params['id']}")
+    response = Unirest.patch("https://morning-oasis-72057.herokuapp.com/api/educations/#{params['id']}")
+
      if response.code == 200
      flash[:success] = "Successfully destroyed education"
      redirect_to "/client/educations"

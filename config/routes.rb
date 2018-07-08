@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   namespace :client do
     get '/students/:id' => 'students#show'
     get '/students/:id/edit' => 'students#edit'
-    patch 'students/:id' => 'students#update'
+    patch '/students/:id' => 'students#update'
 
     get '/experiences/new' => 'experiences#new'
     post '/experiences' => 'experiences#create'

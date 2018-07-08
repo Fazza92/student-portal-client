@@ -5,10 +5,11 @@ class Client::SkillsController < ApplicationController
   end
 
   def create
-    @education = {
+    @skill = {
                   skill_name: ""
                   }
-    # Add a unirest post request 
+    response = Unirest.post("https://morning-oasis-72057.herokuapp.com/api/skills", parameters: @skill)
+
 
     if response.code == 200
          flash[:success] = "Successfully created Skill"
@@ -22,15 +23,13 @@ class Client::SkillsController < ApplicationController
        end
   end
   def update
-     @education = {
+     @skill = {
                        skill_name: params[:skill_name]
 
                      }
 
-     response = Unirest.patch(
-                             "http://localhost:3000/api/skills/#{params[:id]}",
-                             parameters: @skill
-                             )
+     response = Unirest.patch("https://morning-oasis-72057.herokuapp.com/api/skills/#{params['id']}", parameters: @skill)
+
 
      if response.code == 200
        flash[:success] = "Successfully updated Skill"
@@ -45,7 +44,8 @@ class Client::SkillsController < ApplicationController
    end
 
    def destroy
-     response = Unirest.delete("http://localhost:3000/api/skills/#{params['id']}")
+    response = Unirest.delete("https://morning-oasis-72057.herokuapp.com/api/skills/#{params['id']}")
+    
      if response.code == 200
      flash[:success] = "Successfully destroyed skill"
      redirect_to "/client/skills"

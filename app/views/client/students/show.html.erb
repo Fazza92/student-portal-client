@@ -3,13 +3,12 @@
 <h2>Email: <%= @student["email"] %></h2>
 <h2>Phone Number: <%= @student["phone_number"] %></h2>
 <h2>Bio: <%= @student["bio"] %></h2>
-<h2>Linkedin: <%= @student["linkedin_url"] %></h2>
+<h2>Linkedin: <%= @student["linked_in_url"] %></h2>
 <h2>Personal Blog: <%= @student["personal_blog_url"] %></h2>
 <h2>Github: <%= @student["github_url"] %></h2>
 <h2>Photo: <%= @student["photo_url"] %></h2>
 <h2>Capstone Name: <%= @student["capstone_name"] %></h2>
 <h2>Capstone Description: <%= @student["capstone_description"] %></h2>
-<h2>Photo: <%= @student["photo_url"] %></h2>
 <h2>Capstone: <%= @student["capstone_url"] %></h2>
 
 <br>
@@ -20,19 +19,19 @@
 <% @student["experiences"].each do |experience|  %>
   <ul>
     <li>
-      <%= experience["start_date"] %>
+      Start Date: <%= experience["start_date"] %>
     </li>
     <li>
-      <%= experience["end_time"] %>
+      End Date: <%= experience["end_date"] %>
     </li>
     <li>
-      <%= experience["job_title"] %>
+      Job Title: <%= experience["job_title"] %>
     </li>
     <li>
-      <%= experience["company_name"] %>
+      Company Nane: <%= experience["company_name"] %>
     </li>
     <li>
-      <%= experience["details"] %>
+      Details: <%= experience["details"] %>
     </li>
   </ul>
 <% end %>
@@ -61,7 +60,7 @@
 
 <br>
 <h4>Skills:</h4>
-   <%= @student["skills"].each do |skill| %>
+   <% @student["skills"].each do |skill| %>
      <li>
        <%= skill["skill_name"] %>
      </li>
