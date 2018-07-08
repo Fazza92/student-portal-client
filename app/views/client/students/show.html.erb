@@ -6,7 +6,8 @@
 <h2>Linkedin: <%= @student["linked_in_url"] %></h2>
 <h2>Personal Blog: <%= @student["personal_blog_url"] %></h2>
 <h2>Github: <%= @student["github_url"] %></h2>
-<h2>Photo: <%= @student["photo_url"] %></h2>
+<h2>Photo: </h2>
+<img src="<%= @student["photo_url"] %>">
 <h2>Capstone Name: <%= @student["capstone_name"] %></h2>
 <h2>Capstone Description: <%= @student["capstone_description"] %></h2>
 <h2>Capstone: <%= @student["capstone_url"] %></h2>
@@ -65,4 +66,6 @@
        <%= skill["skill_name"] %>
      </li>
    <% end %>
+
+<a href="/client/students/<%=@student['id']%>/edit">Edit Resume</a>
 

@@ -1,4 +1,10 @@
 class SessionsController < ApplicationController
+
+  def current_user_id
+    @current_user_id ||= session["user_id"]
+  end
+  helper_method :current_user_id
+
   def new
     render 'new.html.erb'
   end
@@ -12,14 +18,15 @@ class SessionsController < ApplicationController
                      }     
 
     response = Unirest.post(
-                            "http://localhost:3000/user_token", 
+                            "https://morning-oasis-72057.herokuapp.com/user_token", 
                             parameters: client_params
                             )
     
     if response.code == 201
       session[:jwt] = response.body["jwt"]
+      session[:user_id] = response.body["user"]["id"]
       flash[:success] = 'Successfully logged in!'
-      redirect_to '/'
+      redirect_to "/client/students/#{current_user_id}"
     else
       flash[:warning] = 'Invalid email or password!'
       redirect_to '/login'
@@ -28,7 +35,9 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:jwt] = nil
+    session[:user_id] = nil
     flash[:success] = 'Successfully logged out!'
     redirect_to '/login'
   end
+
 end

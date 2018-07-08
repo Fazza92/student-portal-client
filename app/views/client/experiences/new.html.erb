@@ -1,19 +1,19 @@
 <h2>Add new Experience:</h2>
 <%= form_tag "/client/experiences", method: :post do %>
        <div>
-       Start Date: <input type=“text” name="start_date" value="<%= experience["start_date"] %>">
+       Start Date: <input type=“text” name="start_date" value="<%= @experience['start_date'] %>">
      </div>
      <div>
-       End Date: <input type=“text” name="end_time" value="<%= experience["end_date"] %>">
+       End Date: <input type=“text” name="end_time" value="<%= @experience['end_date'] %>">
      </div>
       <div>
-       Job Title: <input type=“text” name="job_title" value="<%= experience["job_title"] %>">
+       Job Title: <input type=“text” name="job_title" value="<%= @experience['job_title'] %>">
      </div>
       <div>
-       Company Name: <input type=“text” name="company_name" value="<%= experience["company_name"] %>">
+       Company Name: <input type=“text” name="company_name" value="<%= @experience['company_name'] %>">
      </div>
       <div>
-       Details: <input type=“text” name="details" value="<%= experience["details"] %>">
+       Details: <input type=“text” name="details" value="<%= @experience['details'] %>">
      </div>
      <input type=“submit” value="Add Experience">
 

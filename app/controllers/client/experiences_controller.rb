@@ -16,7 +16,8 @@ class Client::ExperiencesController < ApplicationController
 
     if response.code == 200
          flash[:success] = "Successfully created Product"
-         redirect_to "/client/products/"
+         redirect_to "/client/students/#{current_user_id}"
+         
        elsif response.code == 401
          flash[:warning] = "You are not authorized to make a product"
          redirect_to '/'
@@ -27,7 +28,7 @@ class Client::ExperiencesController < ApplicationController
   end
   def update
      @experience = {
-                       experience_id: params[:id]
+                       experience_id: params[:id],
                        start_date: params[:start_date],
                        end_date: params[:end_date],
                        job_title: params[:job_title],
@@ -42,7 +43,8 @@ class Client::ExperiencesController < ApplicationController
 
      if response.code == 200
        flash[:success] = "Successfully updated Experience"
-       redirect_to '/'
+       redirect_to "/client/students/#{current_user_id}"
+       
      elsif response.code == 401
        flash[:warning] = "You are not authorized to update a experience"
        redirect_to '/'
@@ -56,7 +58,8 @@ class Client::ExperiencesController < ApplicationController
      response = Unirest.delete("https://morning-oasis-72057.herokuapp.com/api/experiences/#{params['id'] }")
      if response.code == 200
      flash[:success] = "Successfully destroyed experience"
-     redirect_to "/"
+      redirect_to "/client/students/#{current_user_id}"
+     
      else
        flash[:warning] = "You are not authorized"
        redirect_to '/'

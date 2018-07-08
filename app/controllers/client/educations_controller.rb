@@ -17,7 +17,8 @@ class Client::EducationsController < ApplicationController
 
     if response.code == 200
          flash[:success] = "Successfully created education"
-         redirect_to "/client/educations/"
+        redirect_to "/client/students/#{current_user_id}"
+         
        elsif response.code == 401
          flash[:warning] = "You are not authorized to make a education"
          redirect_to '/'
@@ -40,7 +41,7 @@ class Client::EducationsController < ApplicationController
 
      if response.code == 200
        flash[:success] = "Successfully updated Education"
-       redirect_to "/client/educations/#{params[:id]}"
+       redirect_to "/client/students/#{current_user_id}"
      elsif response.code == 401
        flash[:warning] = "You are not authorized to update a education"
        redirect_to '/'
@@ -55,7 +56,7 @@ class Client::EducationsController < ApplicationController
 
      if response.code == 200
      flash[:success] = "Successfully destroyed education"
-     redirect_to "/client/educations"
+       redirect_to "/client/students/#{current_user_id}"
      else
        flash[:warning] = "You are not authorized"
        redirect_to '/'

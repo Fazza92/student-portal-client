@@ -64,6 +64,9 @@
    <% end %>
 <% end %>
 
+<a href="/client/educations/new">Add Education</a>
+
+
 
 <% @student["experiences"].each do |experience| %>
   <%= form_tag "/client/experiences/#{experience['id']}", method: :patch do %>
@@ -87,6 +90,9 @@
    <% end %>
 <% end %>
 
+<a href="/client/experiences/new">Add Experience</a>
+
+
 <% @student["skills"].each do |skill| %>
   <%= form_tag "/client/skills/#{skill['id']}", method: :patch do %>
      <div>
@@ -96,6 +102,11 @@
      <a href="/client/skills/<%= skill["id"] %>" data-method="delete">Delete</a>
    <% end %>
 <% end %>
+<a href="/client/skills/new">Add Skill</a>
+
+
+<a href="/client/students/<%=@student['id']%>">Show Resume</a>
+
 
 
 

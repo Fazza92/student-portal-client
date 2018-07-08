@@ -6,14 +6,15 @@ class Client::SkillsController < ApplicationController
 
   def create
     @skill = {
-                  skill_name: ""
+                  skill_name: params[:skill_name]
                   }
     response = Unirest.post("https://morning-oasis-72057.herokuapp.com/api/skills", parameters: @skill)
 
 
     if response.code == 200
          flash[:success] = "Successfully created Skill"
-         redirect_to "/client/skills/"
+         redirect_to "/client/students/#{current_user_id}"
+         
        elsif response.code == 401
          flash[:warning] = "You are not authorized to make a skill"
          redirect_to '/'
@@ -33,7 +34,7 @@ class Client::SkillsController < ApplicationController
 
      if response.code == 200
        flash[:success] = "Successfully updated Skill"
-       redirect_to "/client/skills/#{params[:id]}"
+       redirect_to "/client/students/#{current_user_id}"
      elsif response.code == 401
        flash[:warning] = "You are not authorized to update a skill"
        redirect_to '/'
@@ -45,10 +46,10 @@ class Client::SkillsController < ApplicationController
 
    def destroy
     response = Unirest.delete("https://morning-oasis-72057.herokuapp.com/api/skills/#{params['id']}")
-    
      if response.code == 200
      flash[:success] = "Successfully destroyed skill"
-     redirect_to "/client/skills"
+      redirect_to "/client/students/#{current_user_id}"
+     
      else
        flash[:warning] = "You are not authorized"
        redirect_to '/'

@@ -12,6 +12,11 @@
 
     <a href="/login">Log In</a>
     <a href="/logout" data-method="delete">Log Out</a>
+
+    <% if @jwt %>
+         <h4>You are signed in</h4>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
